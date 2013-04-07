@@ -16,7 +16,7 @@ from weatheralerts import WeatherAlerts				# https://github.com/zebpalmer/Weathe
 KEY = 'YOUR_KEY_GOES_HERE' # Get your Weather Underground Developer key at: http://www.wunderground.com/weather/api/d/pricing.html 
 LOCATION = 'MA/Wellesley'  # State and City to fetch weather forecast
 MY_SAME_CODE = '025021'    # Get your area's SAME code at: http://www.nws.noaa.gov/nwr/indexnw.htm#sametable
-ALERT_SEVERITY = "minor"   # Options: "severe" | "major" | "moderate" | "minor", determines if red alert will be triggered on major or moderate weather alerts 
+ALERT_SEVERITY = "minor"   # Options: "severe" | "major" | "moderate" | "minor", determines when an alert will be triggered 
 PRECIP_THRESHOLD = 40	     # 40 means show an alert when chance of precipitation is greater than 40% 
 CHECK_DELAY = 600          # Number of seconds to wait before checking the weather again, 600s = a 10 min delay
 ALERT_SOUND = True	       # If True then play the alert sound when a new weather alert is issued
