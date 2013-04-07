@@ -13,7 +13,7 @@ from pigredients.ics import ws2801 as ws2801			# Using forked version of https:/
 from weatheralerts import WeatherAlerts				# https://github.com/zebpalmer/WeatherAlerts
 
 
-KEY = 'YOUR_KEY_GOES HERE' # Get your Weather Underground Developer key at: http://www.wunderground.com/weather/api/d/pricing.html 
+KEY = 'YOUR_KEY_GOES_HERE' # Get your Weather Underground Developer key at: http://www.wunderground.com/weather/api/d/pricing.html 
 LOCATION = 'MA/Wellesley'  # State and City to fetch weather forecast
 MY_SAME_CODE = '025021'    # Get your area's SAME code at: http://www.nws.noaa.gov/nwr/indexnw.htm#sametable
 ALERT_SEVERITY = "minor"   # Options: "severe" | "major" | "moderate" | "minor", determines if red alert will be triggered on major or moderate weather alerts 
