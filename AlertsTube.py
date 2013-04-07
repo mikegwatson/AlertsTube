@@ -13,7 +13,6 @@ from pigredients.ics import ws2801 as ws2801			# Using forked version of https:/
 from weatheralerts import WeatherAlerts				# https://github.com/zebpalmer/WeatherAlerts
 
 
-# forecast debug URL: http://api.wunderground.com/api/cbf0d6869b1260b2/forecast/q/MA/Wellesley.json
 KEY = 'YOUR_KEY_GOES HERE' # Get your Weather Underground Developer key at: http://www.wunderground.com/weather/api/d/pricing.html 
 LOCATION = 'MA/Wellesley'  # State and City to fetch weather forecast
 MY_SAME_CODE = '025021'    # Get your area's SAME code at: http://www.nws.noaa.gov/nwr/indexnw.htm#sametable
