@@ -298,7 +298,7 @@ def fetch_weather(nws):
         print('Failed to fetch weather, trying again in 30 seconds...')
         time.sleep(30)
         continue
-      break  													# break out of while loop only when fetching weather succeeds
+      break  													                          # break out of while loop only when fetching weather succeeds
 
     os.system('clear')                                          # Clear the terminal screen
     if weather_alert(nws):
@@ -494,31 +494,31 @@ def display_events(LEDcommands, SolidLastLEDcmds):
         if len(LEDcommands) > 1:                                # If there's multiple commands then display the LED seqence
           if (LEDcommands[line][0] == "solid"):                 # If solid command encountered then display the solid_LED sequence
             solid_LED(int(LEDcommands[line][1]),int(LEDcommands[line][2]),int(LEDcommands[line][3]),int(LEDcommands[line][4]))
-            SolidLastLEDcmds = LEDcommands						# Save the last set of LED Commands
+            SolidLastLEDcmds = LEDcommands						          # Save the last set of LED Commands
             time.sleep(2.0)                                     # If only 1 command and not changed then do nothing : stops LED flicker
         elif SolidLastLEDcmds != LEDcommands:                   # If there's 1 command and command changed then display the solid_LED sequence
           if (LEDcommands[line][0] == "solid"):                 # If solid command encountered then display the solid_LED sequence
             solid_LED(int(LEDcommands[line][1]),int(LEDcommands[line][2]),int(LEDcommands[line][3]),int(LEDcommands[line][4]))
             SolidLastLEDcmds = LEDcommands
             time.sleep(2.0)
-        if line < len(LEDcommands):								# This line needed for timing reasons when an LED sequence is removed
+        if line < len(LEDcommands):								              # This line needed for timing reasons when an LED sequence is removed
           if (LEDcommands[line][0] == "blink"):                 # If blink command encountered then display the blink_LED sequence 
             blink_LED(int(LEDcommands[line][1]),int(LEDcommands[line][2]),int(LEDcommands[line][3]),int(LEDcommands[line][4]))
             blink_LED(int(LEDcommands[line][1]),int(LEDcommands[line][2]),int(LEDcommands[line][3]),int(LEDcommands[line][4]))
-        if line < len(LEDcommands):								# This line needed for timing reasons when an LED sequence is removed
+        if line < len(LEDcommands):								              # This line needed for timing reasons when an LED sequence is removed
           if (LEDcommands[line][0] == "flicker"):               # If flicker command encountered then display the flicker_LED sequence 
             flicker_LED(int(LEDcommands[line][1]),int(LEDcommands[line][2]),int(LEDcommands[line][3]),int(LEDcommands[line][4]))  
-        if line < len(LEDcommands):								# This line needed for timing reasons when an LED sequence is removed
+        if line < len(LEDcommands):								              # This line needed for timing reasons when an LED sequence is removed
           if (LEDcommands[line][0] == "snooze"):                # If snooze command encountered then display the snooze_LED sequence
             snooze_LED(int(LEDcommands[line][1]),int(LEDcommands[line][2]),int(LEDcommands[line][3]),int(LEDcommands[line][4]))
             time.sleep(2.0)
-        if line < len(LEDcommands):								# This line needed for timing reasons when an LED sequence is removed
+        if line < len(LEDcommands):								              # This line needed for timing reasons when an LED sequence is removed
           if (LEDcommands[line][0] == "off"):                   # If off command encountered then turn off all the LEDs
             off_LED()
     q.put(SolidLastLEDcmds)                                     # Put SolidLastLEDcmds on the queue from the spawned thread   
 
 
-def shutdown():
+def shutdown():                                                 # Fairly useless right now, add future functionality to shutdown the system
   try:
     os.remove('stockalert.wav')                                 # Cleanup / remove old .wav files
   except OSError:
