@@ -58,10 +58,10 @@ ApiUrl2 = \
 def setup_and_register_interrupts():
     global po
     # Setup GPIO Pins using P1 board header pins so we can use interrupts
-    os.system('echo 4 > /sys/class/gpio/export')           		# GPIO export P1 pin 7 for GPIO
-    os.system('echo 23 > /sys/class/gpio/export')          		# GPIO export P1 pin 16 for GPIO
-    os.system('echo 24 > /sys/class/gpio/export')          		# GPIO export P1 pin 18 for GPIO
-    os.system('echo 25 > /sys/class/gpio/export')          		# GPIO export P1 pin 22 for GPIO
+    os.system('echo 4 > /sys/class/gpio/export')                # GPIO export P1 pin 7 for GPIO
+    os.system('echo 23 > /sys/class/gpio/export')               # GPIO export P1 pin 16 for GPIO
+    os.system('echo 24 > /sys/class/gpio/export')               # GPIO export P1 pin 18 for GPIO
+    os.system('echo 25 > /sys/class/gpio/export')               # GPIO export P1 pin 22 for GPIO
     # Setup GPIO 4, set direction to in with a rising edge
     init4 = '/sys/class/gpio/gpio4/'
     f4 = open(init4 + 'value', 'r')
@@ -233,10 +233,10 @@ re.search('major', severity, re.IGNORECASE) or re.search('severe', severity, re.
 
 def fetch_mail():  
   global calendar_alert
-  calendar_alert = False										# set calendar_alert to False be default, change if find calendar alert
+  calendar_alert = False                                        # set calendar_alert to False be default, change if find calendar alert
   if CHECK_EMAILS:  
     date = (datetime.date.today() - datetime.timedelta(1)).strftime("%d-%b-%Y") # timedelta is number of days back to search for email, currently 1 day 
-    imap = imaplib.IMAP4_SSL('imap.gmail.com')					# Fetch the mail from imap.gmail.com
+    imap = imaplib.IMAP4_SSL('imap.gmail.com')                  # Fetch the mail from imap.gmail.com
     while True:
       try:
         imap.login(EMAIL_ADDRESS,EMAIL_PASSWD)
@@ -244,15 +244,15 @@ def fetch_mail():
         result, data = imap.search(None, '(FROM \"action@ifttt.com\") (SENTSINCE {date})'.format(date=date)) # Show all emails from action@ifttt.com sent within last X days
         #result, data = imap.search(None, "ALL")
         for num in data[0].split():
-          result, data = imap.fetch(num, "(RFC822)") 			# Fetch the email body (RFC822) for the given ID
-          raw_email = data[0][1] 								# Email raw text including headers
+          result, data = imap.fetch(num, "(RFC822)")            # Fetch the email body (RFC822) for the given ID
+          raw_email = data[0][1]                                # Email raw text including headers
           msg = email.message_from_string(raw_email.decode('utf-8'))
           payload = msg.get_payload()
           if type(payload) is str:
             msg_payload = payload
           elif type(payload) is list:
             for part in msg.walk():
-              if part.get_content_type() == 'text/plain':		# If the email is plain text then parse it 
+              if part.get_content_type() == 'text/plain':       # If the email is plain text then parse it 
                 msg_payload = part.get_payload()
 
                 #### CHECK EMAIL FOR IFTTT STOCK PRICE ####
@@ -269,13 +269,13 @@ def fetch_mail():
 
                 #### CHECK EMAIL FOR IFTTT CALENDAR EVENTS ####
                 if re.search('Personal Recipe 3439586', msg_payload, re.IGNORECASE): # Search for Personal Recipe # from IFTTT
-                  alert_string = msg_payload.split('\n', 1)[0]	# Store the first line of text from the email 
+                  alert_string = msg_payload.split('\n', 1)[0]  # Store the first line of text from the email 
                   print("Calendar Alert: " + alert_string.replace("<br>", ""))
-                  calendar_alert = True							# set calendar_alert to True now that we've found an even
-                  imap.store(num, '+FLAGS', '\\Deleted')		# Delete the message now that we've read it
+                  calendar_alert = True	                        # set calendar_alert to True now that we've found an even
+                  imap.store(num, '+FLAGS', '\\Deleted')        # Delete the message now that we've read it
 
-        imap.expunge()											# perform email message deletions
-        imap.close()											# close the imap session and then logout
+        imap.expunge()                                          # perform email message deletions
+        imap.close()                                            # close the imap session and then logout
         imap.logout()
       except:                                                  	# If we get an error wait a bit and try again
         print('Failed to fetch mail, trying again in 30 seconds...')
@@ -535,7 +535,7 @@ if __name__ == "__main__":
     t = None                                                    #
     t2 = None                                                   #
     q = queue.Queue()                                           # 
-    calendar_alert = False										#
+    calendar_alert = False                                      #
     active_weather_alert = False                                #
     last_weather_alert = False                                  # <-- Main initialization end
     try:
